@@ -21,6 +21,15 @@ use std::sync::Arc;
 #[derive(Clone)]
 pub struct SharedShape(pub Arc<dyn Shape>);
 
+impl PartialEq for SharedShape {
+    fn eq(&self, other: &Self) -> bool {
+        self.as_typed_shape() == other.as_typed_shape()
+    }
+
+    fn ne(&self, other: &Self) -> bool {
+        self.as_typed_shape() != other.as_typed_shape()
+    }
+}
 impl Deref for SharedShape {
     type Target = dyn Shape;
     fn deref(&self) -> &dyn Shape {

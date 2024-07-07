@@ -154,6 +154,16 @@ pub enum TypedShape<'a> {
     Custom(u32),
 }
 
+impl PartialEq for TypedShape<'_> {
+    fn eq(&self, other: &Self) -> bool {
+        std::mem::discriminant(self) == std::mem::discriminant(other)
+    }
+
+    fn ne(&self, other: &Self) -> bool {
+        std::mem::discriminant(self) != std::mem::discriminant(other)
+    }
+}
+
 #[cfg(feature = "serde-serialize")]
 #[derive(Deserialize)]
 // NOTE: tha this enum MUST match the `TypedShape` enum.
