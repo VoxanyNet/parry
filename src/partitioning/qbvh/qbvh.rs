@@ -103,7 +103,7 @@ bitflags::bitflags! {
 /// A SIMD node of an SIMD Qbvh.
 ///
 /// This groups four nodes of the Qbvh.
-#[derive(Copy, Clone, Debug)]
+#[derive(Copy, Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serde-serialize", derive(Serialize, Deserialize))]
 #[cfg_attr(
     feature = "rkyv",
@@ -224,7 +224,7 @@ impl<LeafData> QbvhProxy<LeafData> {
     archive(check_bytes)
 )]
 #[repr(C)]
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct Qbvh<LeafData> {
     pub(super) root_aabb: Aabb,
     pub(super) nodes: Vec<QbvhNode>,

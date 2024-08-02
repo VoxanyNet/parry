@@ -6,7 +6,7 @@ use num::{One, Zero};
 use simba::simd::{SimdPartialOrd, SimdValue};
 
 /// Four Aabb represented as a single SoA Aabb with SIMD components.
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 #[cfg_attr(
     feature = "rkyv",
     derive(rkyv::Archive, rkyv::Deserialize, rkyv::Serialize),

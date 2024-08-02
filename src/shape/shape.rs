@@ -85,7 +85,7 @@ pub enum ShapeType {
     Custom,
 }
 
-#[derive(Copy, Clone, Debug)]
+#[derive(Copy, Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serde-serialize", derive(Serialize))]
 /// Enum representing the shape with its actual type
 pub enum TypedShape<'a> {
@@ -152,16 +152,6 @@ pub enum TypedShape<'a> {
     RoundConvexPolygon(&'a RoundConvexPolygon),
     /// A custom user-defined shape with a type identified by a number.
     Custom(u32),
-}
-
-impl PartialEq for TypedShape<'_> {
-    fn eq(&self, other: &Self) -> bool {
-        std::mem::discriminant(self) == std::mem::discriminant(other)
-    }
-
-    fn ne(&self, other: &Self) -> bool {
-        std::mem::discriminant(self) != std::mem::discriminant(other)
-    }
 }
 
 #[cfg(feature = "serde-serialize")]

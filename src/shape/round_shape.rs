@@ -8,7 +8,7 @@ use na::Unit;
     derive(rkyv::Archive, rkyv::Deserialize, rkyv::Serialize),
     archive(check_bytes)
 )]
-#[derive(Copy, Clone, Debug)]
+#[derive(Copy, Clone, Debug, PartialEq)]
 #[repr(C)]
 /// A shape with rounded borders.
 pub struct RoundShape<S> {

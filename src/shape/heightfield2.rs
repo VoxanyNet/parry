@@ -22,7 +22,7 @@ pub type HeightFieldCellStatus = bool;
 //     derive(rkyv::Archive, rkyv::Deserialize, rkyv::Serialize),
 //     archive(check_bytes)
 // )]
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 #[repr(C)]
 /// A 2D heightfield with a generic storage buffer for its heights.
 pub struct HeightField {

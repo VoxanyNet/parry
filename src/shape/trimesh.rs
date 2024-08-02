@@ -77,7 +77,7 @@ pub struct TriMeshPseudoNormals {
 }
 
 /// The connected-components of a triangle mesh.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 #[cfg_attr(feature = "serde-serialize", derive(Serialize, Deserialize))]
 #[cfg_attr(
     feature = "rkyv",
@@ -104,7 +104,7 @@ impl TriMeshConnectedComponents {
 }
 
 /// A vertex of a triangle-mesh’s half-edge topology.
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 #[cfg_attr(feature = "serde-serialize", derive(Serialize, Deserialize))]
 #[cfg_attr(
     feature = "rkyv",
@@ -118,7 +118,7 @@ pub struct TopoVertex {
 }
 
 /// A face of a triangle-mesh’s half-edge topology.
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 #[cfg_attr(feature = "serde-serialize", derive(Serialize, Deserialize))]
 #[cfg_attr(
     feature = "rkyv",
@@ -133,7 +133,7 @@ pub struct TopoFace {
 }
 
 /// A half-edge of a triangle-mesh’s half-edge topology.
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 #[cfg_attr(feature = "serde-serialize", derive(Serialize, Deserialize))]
 #[cfg_attr(
     feature = "rkyv",
@@ -155,7 +155,7 @@ pub struct TopoHalfEdge {
 }
 
 /// The half-edge topology information of a triangle mesh.
-#[derive(Default, Clone)]
+#[derive(Default, Clone, PartialEq)]
 #[cfg_attr(feature = "serde-serialize", derive(Serialize, Deserialize))]
 #[cfg_attr(
     feature = "rkyv",
@@ -249,7 +249,7 @@ bitflags::bitflags! {
     archive(check_bytes)
 )]
 #[repr(C)]
-#[derive(Clone)]
+#[derive(Clone, PartialEq)]
 /// A triangle mesh.
 pub struct TriMesh {
     qbvh: Qbvh<u32>,
