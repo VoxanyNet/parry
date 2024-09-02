@@ -172,21 +172,6 @@ pub struct TriMeshTopology {
     pub half_edges: Vec<TopoHalfEdge>,
 }
 
-impl TriMeshTopology {
-    #[cfg(feature = "dim3")]
-    pub(crate) fn face_half_edges_ids(&self, fid: u32) -> [u32; 3] {
-        let first_half_edge = self.faces[fid as usize].half_edge;
-
-        let mut result = [first_half_edge; 3];
-        for k in 1..3 {
-            let half_edge = self.half_edges[result[k - 1] as usize];
-            result[k] = half_edge.next;
-        }
-
-        result
-    }
-}
-
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[cfg_attr(
     feature = "rkyv",
@@ -592,7 +577,7 @@ impl TriMesh {
     /// - Be manifold (closed, no t-junctions, etc.)
     /// - Be oriented with outward normals.
     ///
-    /// If the the trimesh is correctly oriented, but is manifold everywhere except at its boundaries,
+    /// If the trimesh is correctly oriented, but is manifold everywhere except at its boundaries,
     /// then the computed pseudo-normals will provide correct point-containment test results except
     /// for points closest to the boundary of the mesh.
     ///
