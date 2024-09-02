@@ -89,7 +89,7 @@ pub enum ShapeType {
     Custom,
 }
 
-#[derive(Copy, Clone, Debug, PartialEq)]
+#[derive(Copy, Clone, PartialEq)]
 #[cfg_attr(feature = "serde-serialize", derive(Serialize))]
 /// Enum representing the shape with its actual type
 pub enum TypedShape<'a> {
@@ -152,9 +152,6 @@ pub enum TypedShape<'a> {
     #[cfg(feature = "dim2")]
     #[cfg(feature = "std")]
     RoundConvexPolygon(&'a RoundConvexPolygon),
-    /// A custom user-defined shape.
-    #[cfg_attr(feature = "serde-serialize", serde(skip))]
-    Custom(&'a dyn Shape),
 }
 impl Debug for TypedShape<'_> {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
@@ -199,7 +196,7 @@ impl Debug for TypedShape<'_> {
             Self::RoundConvexPolygon(arg0) => {
                 f.debug_tuple("RoundConvexPolygon").field(arg0).finish()
             }
-            Self::Custom(_) => f.debug_tuple("Custom").finish(),
+            //Self::Custom(_) => f.debug_tuple("Custom").finish(),
         }
     }
 }
